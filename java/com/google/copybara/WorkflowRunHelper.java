@@ -326,7 +326,7 @@ public class WorkflowRunHelper<O extends Revision, D extends Revision> {
    */
   O getLastRev() throws RepoException, ValidationException {
     O lastRev = maybeGetLastRev();
-    if (lastRev == null) {
+    if (lastRev == null && !isForce()) {
       throw new CannotResolveRevisionException(String.format(
           "Previous revision label %s could not be found in %s and --last-rev flag"
               + " was not passed", workflow.getOrigin().getLabelName(), workflow.getDestination()));
